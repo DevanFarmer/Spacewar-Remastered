@@ -1,10 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour
+public class EnemyDirectionalAttack : MonoBehaviour
 {
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float minAttackSpeed;
     [SerializeField] float maxAttackSpeed;
+    [SerializeField] List<Vector2> attackDirections = new();
     float attackSpeed;
 
     float lastAttackTime;
@@ -31,6 +33,12 @@ public class EnemyAttack : MonoBehaviour
 
     void Attack()
     {
-        Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        GameObject proj;
+        foreach (Vector2 attackDir in attackDirections) 
+        {
+            proj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+
+            proj.GetComponent<ProjectileComponent>().SetDirection(attackDir);
+        }
     }
 }

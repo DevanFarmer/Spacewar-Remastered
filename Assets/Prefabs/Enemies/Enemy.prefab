@@ -47,6 +47,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1592881928590740069, guid: 4f1dd19f4420fd047b3ed853ce5dc6d4, type: 3}
   minAttackSpeed: 2.5
   maxAttackSpeed: 5
+  attackDirections:
+  - {x: 1, y: 0}
+  - {x: -1, y: 0}
 --- !u!1 &7362593495358507678
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
+  isInvincible: 0
   onDamageTaken:
     m_PersistentCalls:
       m_Calls:
@@ -287,7 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   strafeSpeed: 2
-  movement: {x: 1, y: -1}
+  movement: {x: 0, y: -1}
   destroyDelayDistance: 2
 --- !u!114 &7351858612612504079
 MonoBehaviour:
