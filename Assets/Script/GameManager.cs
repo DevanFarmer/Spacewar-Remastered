@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    [Header("Player")]
+    [SerializeField] GameObject player;
     private void Awake()
     {
         HandleSingleton();
@@ -24,6 +26,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        PlayerSpawner.Instance.SpawnPlayer();
+        player = PlayerSpawner.Instance.SpawnPlayer();
     }
 }
