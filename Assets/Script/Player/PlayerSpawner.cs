@@ -35,11 +35,13 @@ public class PlayerSpawner : MonoBehaviour
     }
 
     [ContextMenu("Spawn Player")]
-    public void SpawnPlayer()
+    public GameObject SpawnPlayer()
     {
         GameObject player = Instantiate(Player_Prefab, new Vector3(0, Mathf.Lerp(yTop, yBottom, yPercentSpawn), 0), Quaternion.identity);
 
         SetupHealthUI(player);
+
+        return player;
     }
 
     void SetupHealthUI(GameObject player)
