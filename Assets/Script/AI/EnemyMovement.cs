@@ -44,6 +44,9 @@ public class EnemyMovement : MonoBehaviour
 
     void HandleStrafe()
     {
+        // ignore if no strafe
+        if (movement.x == 0) return;
+
         if (transform.position.x >= topRight.x - halfWidth)
         {
             movement.x = -1;
