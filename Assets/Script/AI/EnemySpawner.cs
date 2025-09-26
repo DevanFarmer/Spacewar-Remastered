@@ -99,4 +99,9 @@ public class EnemySpawner : MonoBehaviour
             // if too close to another enemy move up by sprite height
         }
     }
+
+    public void SetSpawnState(bool _state)
+    {
+        spawnEnemies = _state;
+    }
 }
