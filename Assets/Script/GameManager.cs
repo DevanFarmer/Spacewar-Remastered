@@ -19,6 +19,14 @@ public class GameManager : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] GameObject player;
+
+    [Header("Boss")]
+    [SerializeField] GameObject bossPrefab;
+    [SerializeField] float bossTimeToSpawn;
+    [SerializeField] float bossSpawnHeightPadding;
+    bool bossSpawned;
+    float timeSinceStart;
+
     private void Awake()
     {
         HandleSingleton();
@@ -27,5 +35,38 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = PlayerSpawner.Instance.SpawnPlayer();
+        
+        bossSpawned = false;
+
+        timeSinceStart = 0f;
+    }
+
+    private void Update()
+    {
+        timeSinceStart += Time.deltaTime;
+
+        if (!bossSpawned) HandleBossSpawning();
+    }
+
+    Vector2 GetBossSpawnPos()
+    {
+        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, transform.position.z - Camera.main.transform.position.z));
+        return new Vector3(0f, topRight.y + bossSpawnHeightPadding, 0f);
+    }
+
+    // Will have a scriptable object to handle boss spawning and setup
+    void HandleBossSpawning()
+    {
+        if (timeSinceStart < bossTimeToSpawn) return;
+
+        GameObject boss = Instantiate(bossPrefab, GetBossSpawnPos(), Quaternion.identity);
+        // will have a interface to handle different types
+
+        boss.GetComponentInChildren<EnemyTargetedAttack>().SetTarget(player.transform);
+
+        boss.GetComponent<Boss_1_Movement>().onSpawn.AddListener(() => EnemySpawner.Instance.SetSpawnState(false));
+        boss.GetComponent<Boss_1_Movement>().onEntered.AddListener(() => EnemySpawner.Instance.SetSpawnState(true));
+
+        bossSpawned = true;
     }
 }
