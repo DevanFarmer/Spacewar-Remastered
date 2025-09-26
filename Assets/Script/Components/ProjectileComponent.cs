@@ -18,4 +18,9 @@ public class ProjectileComponent : MonoBehaviour
     {
         rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
+
+    public void SetDirection(Vector2 _direction)
+    {
+        direction = _direction;
+    }
 }
