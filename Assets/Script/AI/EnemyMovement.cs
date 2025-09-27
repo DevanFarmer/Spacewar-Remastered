@@ -14,7 +14,9 @@ public class EnemyMovement : MonoBehaviour
     float lastStrafeChangeTime;
 
     [Header("Direction")]
-    [SerializeField] Vector2 movement; // really not sure what causes movement.x to be not 0 after being spawned, even when prefab is 0
+    [SerializeField] Vector2 movement;
+    // really not sure what causes movement.x to be not 0 after being spawned, even when prefab is 0, not consistant
+    // possibly just that they spawned on the edge
 
     [Header("Offscreen Cleanup")]
     [SerializeField] float destroyDelayDistance;
