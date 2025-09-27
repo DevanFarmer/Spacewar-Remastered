@@ -292,10 +292,10 @@ MonoBehaviour:
   moveSpeed: 1
   strafes: 1
   strafeSpeed: 2
-  strafeChangeWithTime: 0
+  strafeChangeWithTime: 1
   minStrafeChangeTime: 1
   maxStrafeChangeTime: 3
-  movement: {x: 0, y: -1}
+  movement: {x: 1, y: -1}
   destroyDelayDistance: 2
 --- !u!114 &7351858612612504079
 MonoBehaviour:
