@@ -19,7 +19,9 @@ public class EnemySpawner : MonoBehaviour
     #endregion
 
     [SerializeField] List<GameObject> enemies = new();
+
     [SerializeField] bool spawnEnemies;
+    public bool EnemiesSpawning { get { return spawnEnemies; } private set { spawnEnemies = value; } } // for other scripts to get value, don't use otherwise
 
     [Header("Spawn Time")]
     [SerializeField] float minSpawnTime;
