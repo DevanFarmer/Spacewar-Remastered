@@ -68,6 +68,7 @@ public class EnemyMovement : MonoBehaviour
             lastStrafeChangeTime = Time.time;
         }
 
+        // would not need to handle this if no strafe
         if (transform.position.x >= topRight.x - halfWidth)
         {
             movement.x = -1;
