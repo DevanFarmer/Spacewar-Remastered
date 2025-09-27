@@ -29,7 +29,7 @@ public class HealthComponent : MonoBehaviour
         onDamageTaken?.Invoke();
         onHealthChange?.Invoke();
 
-        if (currentHealth < 0 )
+        if (currentHealth <= 0 )
         {
             Die();
         }
