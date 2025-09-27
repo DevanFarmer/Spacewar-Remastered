@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class GameManager : MonoBehaviour
     {
         timeSinceStart += Time.deltaTime;
 
+        if (!bossSpawned && EnemySpawner.Instance.EnemiesSpawning && timeSinceStart >= bossTimeToSpawn * 0.75f) EnemySpawner.Instance.SetSpawnState(false);
+
         if (!bossSpawned) HandleBossSpawning();
     }
 
@@ -66,7 +69,6 @@ public class GameManager : MonoBehaviour
 
         boss.GetComponentInChildren<EnemyTargetedAttack>().SetTarget(player.transform);
 
-        boss.GetComponent<Boss_1_Movement>().onSpawn.AddListener(() => EnemySpawner.Instance.SetSpawnState(false));
         boss.GetComponent<Boss_1_Movement>().onEntered.AddListener(() => EnemySpawner.Instance.SetSpawnState(true));
 
         bossSpawned = true;
