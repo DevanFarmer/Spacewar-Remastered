@@ -599,6 +599,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767c1393ce62427478892dea281e2e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  bossPrefab: {fileID: 4438450180913994131, guid: 96bae071193c5be40a1eb3da9e3da41b, type: 3}
+  bossTimeToSpawn: 0.1
+  bossSpawnHeightPadding: 2
 --- !u!4 &1267702878
 Transform:
   m_ObjectHideFlags: 0
@@ -1021,7 +1025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4438450180913994131, guid: 96bae071193c5be40a1eb3da9e3da41b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5138644101581514450, guid: 96bae071193c5be40a1eb3da9e3da41b, type: 3}
       propertyPath: m_LocalPosition.x

@@ -4,10 +4,19 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
 
+    [Header("Strafe")]
+    [SerializeField] bool strafes;
     [SerializeField] float strafeSpeed;
+    [SerializeField] bool strafeChangeWithTime;
+    [SerializeField] float minStrafeChangeTime;
+    [SerializeField] float maxStrafeChangeTime;
+    float strafeChangeTime;
+    float lastStrafeChangeTime;
 
-    [SerializeField] Vector2 movement;
+    [Header("Direction")]
+    [SerializeField] Vector2 movement; // really not sure what causes movement.x to be not 0 after being spawned, even when prefab is 0
 
+    [Header("Offscreen Cleanup")]
     [SerializeField] float destroyDelayDistance;
 
     Camera cam;
@@ -20,6 +29,10 @@ public class EnemyMovement : MonoBehaviour
         cam = Camera.main;
 
         halfWidth = GetComponent<SpriteRenderer>().bounds.extents.x;
+
+        strafeChangeTime = Random.Range(minStrafeChangeTime, maxStrafeChangeTime);
+
+        lastStrafeChangeTime = Time.time;
     }
 
     Vector3 bottomLeft;
@@ -45,15 +58,23 @@ public class EnemyMovement : MonoBehaviour
     void HandleStrafe()
     {
         // ignore if no strafe
-        if (movement.x == 0) return;
+        if (!strafes) return;
+
+        if (lastStrafeChangeTime + strafeChangeTime <= Time.time && strafeChangeWithTime)
+        {
+            movement.x *= -1;
+            lastStrafeChangeTime = Time.time;
+        }
 
         if (transform.position.x >= topRight.x - halfWidth)
         {
             movement.x = -1;
+            lastStrafeChangeTime = Time.time; // so strafe change does immediatly happen after bouncing off edge 
         }
         if (transform.position.x <= bottomLeft.x + halfWidth)
         {
             movement.x = 1;
+            lastStrafeChangeTime = Time.time;
         }
     }
 
