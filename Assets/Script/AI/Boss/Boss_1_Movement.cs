@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+// if remove strafe, this could just to a script to handle onSpawn and onEnter events
 public class Boss_1_Movement : MonoBehaviour
 {
     [SerializeField] float enterSpeed;
