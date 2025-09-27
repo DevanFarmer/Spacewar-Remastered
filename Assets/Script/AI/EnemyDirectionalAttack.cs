@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// create controller for which attacks to use and attackSpeeds
 public class EnemyDirectionalAttack : MonoBehaviour
 {
     [SerializeField] GameObject projectilePrefab;
