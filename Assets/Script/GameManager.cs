@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
         bossSpawned = false;
 
         timeSinceStart = 0f;
+
+        EnemySpawner.Instance.SetSpawnState(true);
     }
 
     private void Update()

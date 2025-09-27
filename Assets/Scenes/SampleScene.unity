@@ -832,7 +832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 7362593495358507678, guid: 07483e983f0621342ab0af66b22dcf5b, type: 3}
-  spawnEnemies: 1
+  spawnEnemies: 0
   minSpawnTime: 3
   maxSpawnTime: 8
   minSpawnYOffset: 2
