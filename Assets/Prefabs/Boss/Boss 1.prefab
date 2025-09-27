@@ -248,6 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitTag: Player
   damage: 1
+  dontDestroyOnHit: 1
 --- !u!1 &5419846886234814004
 GameObject:
   m_ObjectHideFlags: 0

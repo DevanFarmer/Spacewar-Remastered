@@ -4,6 +4,7 @@ public class DamageComponent : MonoBehaviour
 {
     [SerializeField] string hitTag;
     [SerializeField] float damage;
+    [SerializeField] bool dontDestroyOnHit; // saying dont since most will be projectiles and don't want to check if each is true
 
     HealthComponent healthComp;
     private void OnTriggerEnter2D(Collider2D collision)
@@ -15,7 +16,7 @@ public class DamageComponent : MonoBehaviour
         if (healthComp)
         {
             healthComp.TakeDamage(damage);
-            Destroy(gameObject);
+            if (!dontDestroyOnHit) Destroy(gameObject);
         }
     }
 }
