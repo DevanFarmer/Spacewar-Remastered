@@ -24,7 +24,7 @@ public class EnemyTargetedAttack : MonoBehaviour
 
         if (lastAttackTime + attackSpeed <= Time.time)
         {
-            Attack();
+            if (attackEnabled) Attack();
             SetAttackSpeed();
             lastAttackTime = Time.time;
         }
