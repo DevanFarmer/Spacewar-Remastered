@@ -39,7 +39,12 @@ public class EnemyTargetedAttack : MonoBehaviour
     {
         GameObject proj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
-        proj.GetComponent<ProjectileComponent>().SetDirection((target.position - transform.position).normalized);
+        Vector2 direction = target.position - transform.position;
+        direction.Normalize();
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+
+        proj.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     public void SetTarget(Transform _target)

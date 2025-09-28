@@ -5,7 +5,6 @@ public class ProjectileComponent : MonoBehaviour
     Rigidbody2D rb;
 
     [SerializeField] float speed;
-    [SerializeField] Vector2 direction;
 
     private void Start()
     {
@@ -16,11 +15,6 @@ public class ProjectileComponent : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
-    }
-
-    public void SetDirection(Vector2 _direction)
-    {
-        direction = _direction;
+        rb.MovePosition(rb.position + (Vector2)transform.up * speed * Time.fixedDeltaTime);
     }
 }

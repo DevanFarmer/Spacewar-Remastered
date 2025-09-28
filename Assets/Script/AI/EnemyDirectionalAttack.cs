@@ -5,12 +5,18 @@ using UnityEngine;
 public class EnemyDirectionalAttack : MonoBehaviour
 {
     [SerializeField] GameObject projectilePrefab;
+    [Header("Attack Speed")]
     [SerializeField] float minAttackSpeed;
     [SerializeField] float maxAttackSpeed;
-    [SerializeField] List<Vector2> attackDirections = new();
     float attackSpeed;
 
     float lastAttackTime;
+
+    [Header("Attack Settings")]
+    [SerializeField] Vector2 attackDirection;
+    [SerializeField] int numberOfAttacks;
+    [SerializeField] float distanceBetweenAttacks;
+    [SerializeField] float angleBetweenAttacks;
 
     private void Start()
     {
@@ -21,7 +27,7 @@ public class EnemyDirectionalAttack : MonoBehaviour
     {
         if (lastAttackTime + attackSpeed <= Time.time)
         {
-            Attack();
+            Attack(angleBetweenAttacks, numberOfAttacks, transform);
             SetAttackSpeed();
             lastAttackTime = Time.time;
         }
@@ -32,14 +38,23 @@ public class EnemyDirectionalAttack : MonoBehaviour
         attackSpeed = Random.Range(minAttackSpeed, maxAttackSpeed);
     }
 
-    void Attack()
+    GameObject SpawnProjectile(GameObject _projectile, Vector3 _position, Quaternion _rotation)
     {
-        GameObject proj;
-        foreach (Vector2 attackDir in attackDirections) 
-        {
-            proj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        GameObject spawned_Projectile = Instantiate(_projectile, _position, _rotation);
 
-            proj.GetComponent<ProjectileComponent>().SetDirection(attackDir);
+        return spawned_Projectile;
+    }
+
+    void Attack(float _angleBetweenShots, int _numberOfShots, Transform _firePoint)
+    {
+        Quaternion direction = Quaternion.identity;
+        if (_numberOfShots % 2 != 0) direction = Quaternion.Euler(0f, 0f, (_angleBetweenShots * (_numberOfShots / 2)) * -1f) * _firePoint.rotation;
+        else direction = Quaternion.Euler(0f, 0f, ((_angleBetweenShots * (_numberOfShots / 2)) * -1f) + (_angleBetweenShots / 2)) * _firePoint.rotation;
+
+        for (int i = 0; i < _numberOfShots; i++)
+        {
+            SpawnProjectile(projectilePrefab, _firePoint.position, direction);
+            direction = Quaternion.Euler(0f, 0f, _angleBetweenShots) * direction;
         }
     }
 }
