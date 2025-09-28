@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
 
         boss.GetComponent<HealthComponent>().onDeath.AddListener(() =>
         boss.GetComponent<BossMovementUtilities>().MoveToDeathLocation(
-            new Vector2(0, CameraUtilities.Instance.GetTop() + boss.GetComponent<SpriteRenderer>().bounds.extents.y),
+            new Vector2(0, CameraUtilities.Instance.GetTop() - boss.GetComponent<SpriteRenderer>().bounds.extents.y),
             2f));
 
         bossSpawned = true;
