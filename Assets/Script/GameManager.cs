@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
 
         boss.GetComponent<Boss_1_Movement>().onEntered.AddListener(() => EnemySpawner.Instance.SetSpawnState(true));
 
+        boss.GetComponent<HealthComponent>().onDeath.AddListener(() => EnemySpawner.Instance.SetSpawnState(false));
+
         bossSpawned = true;
     }
 }
