@@ -837,6 +837,7 @@ MonoBehaviour:
   maxSpawnTime: 7
   minSpawnYOffset: 2
   maxSpawnYOffset: 5
+  spawnXPadding: 1
   minSpawns: 1
   maxSpawns: 3
 --- !u!4 &1470908670

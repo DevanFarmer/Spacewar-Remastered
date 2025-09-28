@@ -30,6 +30,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawn Pos")]
     [SerializeField] float minSpawnYOffset;
     [SerializeField] float maxSpawnYOffset;
+    [SerializeField] float spawnXPadding;
 
     [Header("Spawn Amount")]
     [SerializeField] int minSpawns;
@@ -76,7 +77,7 @@ public class EnemySpawner : MonoBehaviour
 
     float GetSpawnXPos()
     {
-        return Random.Range(bottomLeft.x, topRight.x);
+        return Random.Range(bottomLeft.x + spawnXPadding, topRight.x - spawnXPadding);
     }
 
     float GetSpawnYPos()
