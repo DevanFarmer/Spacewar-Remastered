@@ -4,6 +4,8 @@ using UnityEngine.Events;
 // if remove strafe, this could just to a script to handle onSpawn and onEnter events
 public class Boss_1_Movement : MonoBehaviour
 {
+    [SerializeField] bool canMove;
+
     [SerializeField] float enterSpeed;
 
     [SerializeField] float strafeSpeed;
@@ -35,12 +37,16 @@ public class Boss_1_Movement : MonoBehaviour
     Vector3 topRight;
     private void Update()
     {
+        if (!canMove) return;
+
         bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, transform.position.z - cam.transform.position.z));
         topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, transform.position.z - cam.transform.position.z));
     }
 
     private void FixedUpdate()
     {
+        if (!canMove) return;
+
         if (!hasEntered)
         {
             HandleEntering();
@@ -77,5 +83,10 @@ public class Boss_1_Movement : MonoBehaviour
     void HandleStrafing()
     {
         rb.MovePosition(rb.position + (Vector2.right * strafeDirection) * strafeSpeed * Time.fixedDeltaTime);
+    }
+
+    public void SetMoveState(bool state)
+    {
+        canMove = state;
     }
 }
