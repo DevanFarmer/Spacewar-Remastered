@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  strafes: 1
+  strafes: 0
   strafeSpeed: 2
   strafeChangeWithTime: 0
   minStrafeChangeTime: 1
