@@ -13,7 +13,6 @@ public class EnemyDirectionalAttack : MonoBehaviour
     float lastAttackTime;
 
     [Header("Attack Settings")]
-    [SerializeField] Vector2 attackDirection;
     [SerializeField] int numberOfAttacks;
     [SerializeField] float distanceBetweenAttacks;
     [SerializeField] float angleBetweenAttacks;
