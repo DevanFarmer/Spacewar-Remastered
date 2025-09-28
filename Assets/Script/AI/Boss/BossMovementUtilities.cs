@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossMovementUtilities : MonoBehaviour
 {
-    void MoveToDeathLocation(Vector2 deathLocation, float speed)
+    public void MoveToDeathLocation(Vector2 deathLocation, float speed)
     {
         StartCoroutine(MoveToLocation(deathLocation, speed));
     }
