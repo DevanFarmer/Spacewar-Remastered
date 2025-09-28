@@ -47,9 +47,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1592881928590740069, guid: 4f1dd19f4420fd047b3ed853ce5dc6d4, type: 3}
   minAttackSpeed: 2.5
   maxAttackSpeed: 5
-  numberOfAttacks: 3
-  distanceBetweenAttacks: 3
-  angleBetweenAttacks: 45
+  numberOfAttacks: 1
+  angleBetweenAttacks: 0
 --- !u!1 &7362593495358507678
 GameObject:
   m_ObjectHideFlags: 0
