@@ -2,6 +2,11 @@ using UnityEngine;
 
 namespace EventBusEventData
 {
+    #region Interfaces
+    public interface IReachedLocationEvent { }
+    public readonly struct OnLocationReachedDefault : IReachedLocationEvent { }
+    #endregion
+
     #region Game State Events
     public readonly struct OnPauseChanged
     {
@@ -15,6 +20,6 @@ namespace EventBusEventData
     #endregion
 
     #region Boss Events
-    public readonly struct OnBossDeathLocationReached {  }
+    public readonly struct OnBossDeathLocationReached : IReachedLocationEvent {  }
     #endregion
 }
