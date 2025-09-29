@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject player;
 
     [Header("Boss")]
-    [SerializeField] GameObject bossPrefab;
+    [SerializeField] BaseBossScriptableObject boss;
     [SerializeField] float bossTimeToSpawn;
     [SerializeField] float bossSpawnHeightPadding;
     bool bossSpawned;
@@ -53,30 +53,11 @@ public class GameManager : MonoBehaviour
         if (!bossSpawned) HandleBossSpawning();
     }
 
-    Vector2 GetBossSpawnPos()
-    {
-        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, transform.position.z - Camera.main.transform.position.z));
-        return new Vector3(0f, topRight.y + bossSpawnHeightPadding, 0f);
-    }
-
-    // Will have a scriptable object to handle boss spawning and setup
     void HandleBossSpawning()
     {
         if (timeSinceStart < bossTimeToSpawn) return;
 
-        GameObject boss = Instantiate(bossPrefab, GetBossSpawnPos(), Quaternion.identity);
-        // will have a interface to handle different types
-
-        boss.GetComponentInChildren<EnemyTargetedAttack>().SetTarget(player.transform);
-
-        boss.GetComponent<Boss_1_Movement>().onEntered.AddListener(() => EnemySpawner.Instance.SetSpawnState(true));
-
-        boss.GetComponent<HealthComponent>().onDeath.AddListener(() => EnemySpawner.Instance.SetSpawnState(false));
-
-        boss.GetComponent<HealthComponent>().onDeath.AddListener(() =>
-        boss.GetComponent<BossMovementUtilities>().MoveToDeathLocation(
-            new Vector2(0, CameraUtilities.Instance.GetTop() - boss.GetComponent<SpriteRenderer>().bounds.extents.y),
-            1f));
+        boss.SpawnBoss();
 
         bossSpawned = true;
     }
