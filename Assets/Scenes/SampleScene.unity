@@ -614,6 +614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   bossPrefab: {fileID: 4438450180913994131, guid: 96bae071193c5be40a1eb3da9e3da41b, type: 3}
+  boss: {fileID: 11400000, guid: 5931fa0a2e19e9c4682da56c377138a7, type: 2}
   bossTimeToSpawn: 20
   bossSpawnHeightPadding: 2
 --- !u!4 &1267702878

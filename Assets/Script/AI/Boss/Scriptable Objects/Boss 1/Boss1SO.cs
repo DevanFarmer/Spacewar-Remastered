@@ -20,6 +20,12 @@ public class Boss1SO : BaseBossScriptableObject
 
         boss.GetComponent<HealthComponent>().onDeath.AddListener(() => EnemySpawner.Instance.SetSpawnState(false));
 
+        boss.GetComponent<HealthComponent>().onDeath.AddListener(() =>
+        boss.GetComponent<BossMovementUtilities>().MoveToLocation(
+            new Vector2(0, CameraUtilities.Instance.GetTop() - boss.GetComponent<SpriteRenderer>().bounds.extents.y),
+            1f,
+            new OnBossDeathLocationReached()));
+
         EventBus.Subscribe<OnBossDeathLocationReached>(HandleOnBossDeathLocationReached);
     }
 

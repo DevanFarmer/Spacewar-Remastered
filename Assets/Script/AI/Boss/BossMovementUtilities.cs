@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BossMovementUtilities : MonoBehaviour
 {
-    public void MoveToDeathLocation(Vector2 deathLocation, float speed)
+    public void MoveToLocation<T>(Vector2 deathLocation, float speed, T reachedEvent) where T : struct, EventBusEventData.IReachedLocationEvent
     {
-        StartCoroutine(MoveToLocation(deathLocation, speed));
+        StartCoroutine(HandleMoveToLocation(deathLocation, speed, reachedEvent));
     }
 
-    IEnumerator MoveToLocation(Vector2 location, float speed)
+    IEnumerator HandleMoveToLocation<T>(Vector2 location, float speed, T reachedEvent) where T : struct, EventBusEventData.IReachedLocationEvent
     {
         while ((Vector2)transform.position != location)
         {
@@ -21,6 +21,6 @@ public class BossMovementUtilities : MonoBehaviour
             yield return null;
         }
 
-        EventBus.Publish(new OnBossDeathLocationReached());
+        EventBus.Publish(reachedEvent);
     }
 }
