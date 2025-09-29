@@ -80,4 +80,9 @@ public class GameManager : MonoBehaviour
 
         bossSpawned = true;
     }
+
+    public Transform GetPlayer()
+    {
+        return player.transform;
+    }
 }
