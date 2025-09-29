@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  direction: {x: 0, y: -1}
 --- !u!114 &2331058501311252736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,4 +180,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitTag: Player
-  damage: 2
+  damage: 1
+  dontDestroyOnHit: 0
