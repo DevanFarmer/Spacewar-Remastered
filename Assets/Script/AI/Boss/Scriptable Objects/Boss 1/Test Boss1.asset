@@ -15,4 +15,10 @@ MonoBehaviour:
   bossPrefab: {fileID: 4438450180913994131, guid: 96bae071193c5be40a1eb3da9e3da41b, type: 3}
   health: 100
   bossSpawnHeightPadding: 2
-  scoreGain: 100
+  scoreTimes:
+  - scoreGain: 250
+    time: 10
+  - scoreGain: 150
+    time: 15
+  - scoreGain: 100
+    time: 20

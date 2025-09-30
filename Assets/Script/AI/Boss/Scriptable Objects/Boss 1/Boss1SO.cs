@@ -17,7 +17,9 @@ public class Boss1SO : BaseBossScriptableObject
         boss.GetComponentInChildren<EnemyTargetedAttack>().SetTarget(GameManager.Instance.GetPlayer());
 
         boss.GetComponent<Boss_1_Movement>().onEntered.AddListener(() => EnemySpawner.Instance.SetSpawnState(true));
+        boss.GetComponent<Boss_1_Movement>().onEntered.AddListener(() => EventBus.Publish(new OnBossEntered()));
 
+        boss.GetComponent<HealthComponent>().onDeath.AddListener(() => bossDefeatedTime = Time.time);
         boss.GetComponent<HealthComponent>().onDeath.AddListener(() => EnemySpawner.Instance.SetSpawnState(false));
 
         boss.GetComponent<HealthComponent>().onDeath.AddListener(() =>
@@ -57,7 +59,7 @@ public class Boss1SO : BaseBossScriptableObject
 
     void HandleSecondDeathLocation()
     {
-        EventBus.Publish(new OnBossDefeated(scoreGain));
+        EventBus.Publish(new OnBossDefeated(GetTotalScoreGain()));
 
         EventBus.Unsubscribe<OnBossDeathLocationReached>(HandleOnBossDeathLocationReached);
 

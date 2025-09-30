@@ -20,6 +20,8 @@ namespace EventBusEventData
     #endregion
 
     #region Boss Events
+    public readonly struct OnBossEntered { }
+
     public readonly struct OnBossDeathLocationReached : IReachedLocationEvent 
     {
         public readonly int bossDeathState;
