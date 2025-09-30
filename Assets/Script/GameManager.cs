@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Boss")]
     [SerializeField] BaseBossScriptableObject boss;
-    [SerializeField] float bossTimeToSpawn;
-    [SerializeField] float bossSpawnHeightPadding;
+    [SerializeField] float bossTimeToSpawn; // will be set in BossSO
+    [SerializeField] float bossSpawnHeightPadding; // will be set in BossSO
     bool bossSpawned;
     float timeSinceStart;
 
