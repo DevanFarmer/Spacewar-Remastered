@@ -24,7 +24,7 @@ public class Boss1SO : BaseBossScriptableObject
         boss.GetComponent<BossMovementUtilities>().MoveToLocation(
             new Vector2(0, CameraUtilities.Instance.GetTop() - boss.GetComponent<SpriteRenderer>().bounds.extents.y),
             1f,
-            new OnBossDeathLocationReached()));
+            new OnBossDeathLocationReached(1)));
 
         EventBus.Subscribe<OnBossDeathLocationReached>(HandleOnBossDeathLocationReached);
     }
@@ -33,13 +33,34 @@ public class Boss1SO : BaseBossScriptableObject
     void HandleOnBossDeathLocationReached(OnBossDeathLocationReached e)
     {
         Debug.Log("Death Location Reached!");
-        // play animation(pieces fly off)
+        
+        if (e.bossDeathState == 1)
+        {
+            HandleFirstDeathLocation();
+        }
+        else if (e.bossDeathState == 2)
+        {
+            HandleSecondDeathLocation();
+        }
+    }
+
+    void HandleFirstDeathLocation()
+    {
+        // play animation(pieces fly off, big explosion that wipes away all enemies)
+        // after animation next move to location will be called
 
         boss.GetComponent<BossMovementUtilities>().MoveToLocation(
             new Vector2(0, CameraUtilities.Instance.GetTop() + 4f),
             1f,
-            new OnLocationReachedDefault());
+            new OnBossDeathLocationReached(2));
+    }
+
+    void HandleSecondDeathLocation()
+    {
+        EventBus.Publish(new OnBossDefeated());
 
         EventBus.Unsubscribe<OnBossDeathLocationReached>(HandleOnBossDeathLocationReached);
+
+        boss.SetActive(false);
     }
 }

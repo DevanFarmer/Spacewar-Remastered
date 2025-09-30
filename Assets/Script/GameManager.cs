@@ -83,6 +83,8 @@ public class GameManager : MonoBehaviour
     void OnBossDefeatedEvent(OnBossDefeated e)
     {
         bossDefeated = true;
+
+        Debug.Log("Boss Defeated!");
         // add score
         // next level etc.
     }
