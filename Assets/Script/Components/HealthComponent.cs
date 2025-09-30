@@ -43,6 +43,7 @@ public class HealthComponent : MonoBehaviour
     {
         if (isDead) return;
         onDeath?.Invoke();
+        isDead = true;
     }
 
     public float GetCurrentHealth()
