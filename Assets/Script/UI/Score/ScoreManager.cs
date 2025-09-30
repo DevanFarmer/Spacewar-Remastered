@@ -57,5 +57,11 @@ public class ScoreManager : MonoBehaviour
     void OnBossDefeatedEvent(OnBossDefeated e)
     {
         GainScore(e.scoreGain);
+
+        int livesLeft = (int)GameManager.Instance.GetPlayer().GetComponent<HealthComponent>().GetCurrentHealth();
+
+        if (livesLeft <= 0) livesLeft = 1; // just in case the player dies just before calculation
+
+        GainScore((score * livesLeft) - score); // gain adds not sets, so subtract current score from calculated score
     }
 }
