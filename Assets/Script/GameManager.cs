@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using EventBusEventData;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,7 +27,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] float bossTimeToSpawn; // will be set in BossSO
     [SerializeField] float bossSpawnHeightPadding; // will be set in BossSO
     bool bossSpawned;
+    bool bossDefeated; // might need in future
+
     float timeSinceStart;
+
+    private void OnEnable()
+    {
+        EventBus.Subscribe<OnBossDefeated>(OnBossDefeatedEvent);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe<OnBossDefeated>(OnBossDefeatedEvent);
+    }
 
     private void Awake()
     {
@@ -65,5 +78,12 @@ public class GameManager : MonoBehaviour
     public Transform GetPlayer()
     {
         return player.transform;
+    }
+
+    void OnBossDefeatedEvent(OnBossDefeated e)
+    {
+        bossDefeated = true;
+        // add score
+        // next level etc.
     }
 }

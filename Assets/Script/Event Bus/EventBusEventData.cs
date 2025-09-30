@@ -21,5 +21,7 @@ namespace EventBusEventData
 
     #region Boss Events
     public readonly struct OnBossDeathLocationReached : IReachedLocationEvent {  }
+
+    public readonly struct OnBossDefeated { }
     #endregion
 }
