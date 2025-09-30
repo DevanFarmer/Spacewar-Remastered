@@ -12,12 +12,16 @@ public class HealthComponent : MonoBehaviour
     public UnityEvent onHealthChange;
     public UnityEvent onDeath;
 
+    bool isDead;
+
     private void Start()
     {
         currentHealth = maxHealth;
         onHealthChange?.Invoke();
 
         isInvincible = false;
+
+        isDead = false;
     }
 
     public void TakeDamage(float _damage)
@@ -37,6 +41,7 @@ public class HealthComponent : MonoBehaviour
 
     void Die()
     {
+        if (isDead) return;
         onDeath?.Invoke();
     }
 
