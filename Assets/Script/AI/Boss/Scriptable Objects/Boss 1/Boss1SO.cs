@@ -5,13 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Boss1", menuName = "Boss/Boss 1")]
 public class Boss1SO : BaseBossScriptableObject
 {
-
+    GameObject boss; // this and instantiating boss will be in base
 
     public override void SpawnBoss()
     {
         base.SpawnBoss();
 
-        GameObject boss = Instantiate(bossPrefab, GetBossSpawnPos(), Quaternion.identity);
+        boss = Instantiate(bossPrefab, GetBossSpawnPos(), Quaternion.identity);
         // will have a interface to handle different types
 
         boss.GetComponentInChildren<EnemyTargetedAttack>().SetTarget(GameManager.Instance.GetPlayer());
@@ -29,9 +29,16 @@ public class Boss1SO : BaseBossScriptableObject
         EventBus.Subscribe<OnBossDeathLocationReached>(HandleOnBossDeathLocationReached);
     }
 
+    // will add a var to location reached event to check switch state the death is, first is pieces fly off animation, second is final death
     void HandleOnBossDeathLocationReached(OnBossDeathLocationReached e)
     {
         Debug.Log("Death Location Reached!");
+        // play animation(pieces fly off)
+
+        boss.GetComponent<BossMovementUtilities>().MoveToLocation(
+            new Vector2(0, CameraUtilities.Instance.GetTop() + 4f),
+            1f,
+            new OnLocationReachedDefault());
 
         EventBus.Unsubscribe<OnBossDeathLocationReached>(HandleOnBossDeathLocationReached);
     }
