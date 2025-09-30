@@ -32,7 +32,7 @@ public class Boss1SO : BaseBossScriptableObject
     // will add a var to location reached event to check switch state the death is, first is pieces fly off animation, second is final death
     void HandleOnBossDeathLocationReached(OnBossDeathLocationReached e)
     {
-        Debug.Log("Death Location Reached!");
+        Debug.Log($"Death Location {e.bossDeathState} Reached!");
         
         if (e.bossDeathState == 1)
         {
@@ -57,7 +57,7 @@ public class Boss1SO : BaseBossScriptableObject
 
     void HandleSecondDeathLocation()
     {
-        EventBus.Publish(new OnBossDefeated());
+        EventBus.Publish(new OnBossDefeated(scoreGain));
 
         EventBus.Unsubscribe<OnBossDeathLocationReached>(HandleOnBossDeathLocationReached);
 

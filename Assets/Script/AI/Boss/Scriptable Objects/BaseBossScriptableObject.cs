@@ -9,6 +9,8 @@ public abstract class BaseBossScriptableObject : ScriptableObject
     [Header("Spawning")]
     public float bossSpawnHeightPadding;
 
+    public int scoreGain;
+
     protected Vector2 GetBossSpawnPos()
     {
         return new Vector3(

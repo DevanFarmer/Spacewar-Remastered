@@ -30,6 +30,14 @@ namespace EventBusEventData
         }
     }
 
-    public readonly struct OnBossDefeated { } // could pass things like score gain
+    public readonly struct OnBossDefeated 
+    {
+        public readonly int scoreGain;
+
+        public OnBossDefeated(int _scoreGain)
+        {
+            scoreGain = _scoreGain;
+        }
+    }
     #endregion
 }

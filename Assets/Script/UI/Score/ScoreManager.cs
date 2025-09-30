@@ -1,3 +1,4 @@
+using EventBusEventData;
 using TMPro;
 using UnityEngine;
 
@@ -21,6 +22,16 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] int score;
     [SerializeField] TextMeshProUGUI scoreText;
 
+    private void OnEnable()
+    {
+        EventBus.Subscribe<OnBossDefeated>(OnBossDefeatedEvent);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe<OnBossDefeated>(OnBossDefeatedEvent);
+    }
+
     private void Awake()
     {
         HandleSingleton();
@@ -41,5 +52,10 @@ public class ScoreManager : MonoBehaviour
     void UpdateScoreUI()
     {
         scoreText.text = score.ToString();
+    }
+
+    void OnBossDefeatedEvent(OnBossDefeated e)
+    {
+        GainScore(e.scoreGain);
     }
 }
