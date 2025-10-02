@@ -87,5 +87,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("Boss Defeated!");
         // add score
         // next level etc.
+        LevelManager.LoadNextLevel();
+    }
+
     }
 }
